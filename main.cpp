@@ -2,56 +2,20 @@
 #include "src/InputBuffer.h"
 #include "src/Statement.h"
 #include "src/Enums.h"
+#include "src/Helper.h"
+#include "src/Compiler.h"
+#include "src/VirtualMachine.h"
 using namespace std;
-
-PrepareResult prepareStatement(InputBuffer &inputBuffer, Statement &statement) {
-    if(inputBuffer.buffer == "select") {
-        statement.type = statementSelect;
-        return prepareSuccess;
-    }
-    if(inputBuffer.buffer == "insert") {
-        statement.type = statementInsert;
-        return prepareSuccess;
-    }
-    return prepareUnrecognizedStatement;
-}
-
-string getFirstWord(string &buffer) {
-    string firstWord;
-    for(int i=0; i<buffer.size() && buffer[i] != ' '; i++) {
-        firstWord += buffer[i];
-    }
-    return firstWord;
-}
-
-void executeStatement(Statement &statement) {
-    switch (statement.type){
-        case statementSelect:
-            cout << "select" << endl;
-            break;
-        case statementInsert:
-            cout << "insert" << endl;
-            break;
-    }
-}
 
 void printPrompt() {
     cout << "db> ";
 }
-
 void readInput(InputBuffer &inputBuffer) {
     getline(cin, inputBuffer.buffer);
     if(inputBuffer.buffer.size() == 0) {
         printPrompt();
         readInput(inputBuffer);
     }
-}
-
-MetaCommandResult executeMetaCommand(InputBuffer inputBuffer) {
-    if (true) {
-        return metaCommandSuccess;
-    }
-    return metaCommandUnrecognizedCommand;
 }
 
 int main() {
