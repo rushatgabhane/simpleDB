@@ -1,5 +1,5 @@
 # simpleDB
-Database based on SQLite architecture.
+Learning project. Database based on SQLite architecture.
 
 ## Build the project
  - #### Create build directory `mkdir build && cd build`
